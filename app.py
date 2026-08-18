@@ -797,5 +797,36 @@ def edit_expense(expense_id):
 # RUN APPLICATION
 # --------------------------------------------------
 
+def init_database():
+    conn = sqlite3.connect(DATABASE)
+
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            fullname TEXT NOT NULL,
+            email TEXT UNIQUE NOT NULL,
+            password TEXT NOT NULL
+        )
+    """)
+
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS expenses (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL,
+            title TEXT NOT NULL,
+            category TEXT NOT NULL,
+            amount REAL NOT NULL,
+            expense_date TEXT NOT NULL,
+            description TEXT
+        )
+    """)
+
+    conn.commit()
+    conn.close()
+
+
+init_database()
+
+
 if __name__ == "__main__":
     app.run(debug=True)
