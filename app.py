@@ -10,6 +10,7 @@ app.secret_key = "expense-control-secret-key"
 
 DATABASE = "database/expense.db"
 
+os.makedirs("database", exist_ok=True)
 
 # --------------------------------------------------
 # DATABASE CONNECTION
