@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Expense - Expense Control System</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #0B1F3A;
+        }
+
+        .header {
+            background: #0B1F3A;
+            color: white;
+            padding: 20px 5%;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 700px;
+            margin: 50px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            margin-top: 0;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ccd5e0;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #0B1F3A;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background: #173b69;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #1d568f;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        ₹ Expense Control System
+    </div>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>Add Expense</h1>
+
+            <form method="POST" action="/add-expense">
+
+                <label for="title">Expense Title</label>
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    placeholder="Enter expense title"
+                    required
+                >
+
+                <label for="category">Category</label>
+                <select id="category" name="category" required>
+                    <option value="">Select Category</option>
+                    <option value="Food">Food</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Bills">Bills</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="amount">Amount</label>
+                <input
+                    type="number"
+                    id="amount"
+                    name="amount"
+                    placeholder="Enter amount"
+                    step="0.01"
+                    min="0"
+                    required
+                >
+
+                <label for="expense_date">Date</label>
+                <input
+                    type="date"
+                    id="expense_date"
+                    name="expense_date"
+                    required
+                >
+
+                <label for="description">Description</label>
+                <textarea
+                    id="description"
+                    name="description"
+                    placeholder="Enter description"
+                ></textarea>
+
+                <button type="submit" class="button">
+                    Save Expense
+                </button>
+
+            </form>
+
+            <a href="/dashboard" class="back">← Back to Dashboard</a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

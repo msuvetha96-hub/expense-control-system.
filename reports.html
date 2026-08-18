@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Expense Reports - Expense Control System</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #0B1F3A;
+        }
+
+        .navbar {
+            background: #0B1F3A;
+            color: white;
+            padding: 22px 5%;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 40px auto;
+        }
+
+        h1 {
+            font-size: 34px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #667085;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        /* SUMMARY CARDS */
+
+        .cards {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            flex: 1;
+            background: white;
+            padding: 28px;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            color: #667085;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .card strong {
+            font-size: 30px;
+            color: #0B1F3A;
+        }
+
+        /* REPORT BOX */
+
+        .report-box {
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .report-box h2 {
+            font-size: 25px;
+            margin-bottom: 30px;
+        }
+
+        /* CATEGORY */
+
+        .category-row {
+            margin-bottom: 28px;
+        }
+
+        .category-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 9px;
+        }
+
+        .category-name {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .category-amount {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* PROGRESS BAR */
+
+        .bar-background {
+            width: 100%;
+            height: 16px;
+            background: #e5eaf0;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .bar {
+            height: 100%;
+            background: #164B7A;
+            border-radius: 20px;
+            min-width: 3px;
+            transition: width 0.4s ease;
+        }
+
+        /* BACK BUTTON */
+
+        .back {
+            display: inline-block;
+            color: #164B7A;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            .container {
+                width: 94%;
+                margin: 25px auto;
+            }
+
+            .cards {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .report-box {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .card strong {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        ₹ Expense Control System
+    </div>
+
+    <div class="container">
+
+        <h1>Expense Reports</h1>
+
+        <p class="subtitle">
+            Analyze your spending and understand where your money goes.
+        </p>
+
+        <!-- SUMMARY CARDS -->
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Total Expense</h3>
+                <strong>
+                    ₹ {{ "%.2f"|format(total) }}
+                </strong>
+            </div>
+
+            <div class="card">
+                <h3>Total Transactions</h3>
+                <strong>
+                    {{ count }}
+                </strong>
+            </div>
+
+            <div class="card">
+                <h3>Average Expense</h3>
+                <strong>
+                    ₹ {{ "%.2f"|format(average) }}
+                </strong>
+            </div>
+
+        </div>
+
+
+        <!-- SPENDING BY CATEGORY -->
+
+        <div class="report-box">
+
+            <h2>Spending by Category</h2>
+
+            {% for category in categories %}
+
+            <div class="category-row">
+
+                <div class="category-header">
+
+                    <span class="category-name">
+                        {{ category[0] }}
+                    </span>
+
+                    <span class="category-amount">
+                        ₹ {{ "%.2f"|format(category[1]) }}
+                    </span>
+
+                </div>
+
+                <div class="bar-background">
+
+                    <div
+                        class="bar"
+                        data-width="{{ category[2] }}"
+                    ></div>
+
+                </div>
+
+            </div>
+
+            {% else %}
+
+            <p>No expense data available.</p>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- BACK -->
+
+        <a href="{{ url_for('dashboard') }}" class="back">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+
+    <!-- BAR SCRIPT -->
+
+    <script>
+        document.querySelectorAll(".bar").forEach(function(bar) {
+
+            const width = parseFloat(
+                bar.getAttribute("data-width")
+            );
+
+            if (!isNaN(width)) {
+                bar.style.width = width + "%";
+            }
+
+        });
+    </script>
+
+</body>
+</html>

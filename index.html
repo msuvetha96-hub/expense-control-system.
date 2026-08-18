@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Expense Control System</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fa;
+            color: #0B1F3A;
+        }
+
+        /* Navigation */
+        .navbar {
+            height: 75px;
+            background: #0B1F3A;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 60px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: white;
+            color: #0B1F3A;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .nav-buttons a {
+            text-decoration: none;
+            padding: 11px 22px;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        .login {
+            background: transparent;
+            color: white;
+            border: 1px solid white;
+        }
+
+        .register {
+            background: white;
+            color: #0B1F3A;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: calc(100vh - 75px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 70px 10%;
+            background: linear-gradient(
+                135deg,
+                #ffffff 0%,
+                #eef3f8 100%
+            );
+        }
+
+        .hero-text {
+            max-width: 560px;
+        }
+
+        .hero-text h1 {
+            font-size: 52px;
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+
+        .hero-text h1 span {
+            color: #164B7A;
+        }
+
+        .hero-text p {
+            font-size: 19px;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 35px;
+        }
+
+        .start-button {
+            display: inline-block;
+            text-decoration: none;
+            background: #0B1F3A;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .start-button:hover {
+            background: #164B7A;
+        }
+
+        /* Dashboard preview */
+        .dashboard-card {
+            width: 450px;
+            background: white;
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 15px 40px rgba(11, 31, 58, 0.15);
+        }
+
+        .dashboard-title {
+            font-size: 21px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .summary {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .summary-card {
+            flex: 1;
+            padding: 18px;
+            background: #f1f5f9;
+            border-radius: 10px;
+        }
+
+        .summary-card small {
+            color: #777;
+        }
+
+        .summary-card strong {
+            display: block;
+            font-size: 21px;
+            margin-top: 8px;
+        }
+
+        .expense-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 14px 5px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .expense-name {
+            font-weight: bold;
+        }
+
+        .expense-amount {
+            font-weight: bold;
+            color: #0B1F3A;
+        }
+
+        @media (max-width: 900px) {
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                gap: 50px;
+            }
+
+            .dashboard-card {
+                width: 100%;
+                max-width: 450px;
+            }
+
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .hero-text h1 {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+
+        <div class="logo">
+            <div class="logo-icon">₹</div>
+            Expense Control System
+        </div>
+
+        <div class="nav-buttons">
+            <a href="/login" class="login">Login</a>
+           <a href="/register" class="register">Register</a>
+        </div>
+
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <div class="hero-text">
+
+            <h1>
+                Manage Your
+                <span>Expenses</span>
+                Smarter
+            </h1>
+
+            <p>
+                Track your spending, manage transactions,
+                understand your financial activity, and keep
+                complete control of your expenses in one place.
+            </p>
+
+           <a href="/login" class="start-button">
+    Get Started
+</a>
+          
+        </div>
+
+
+        <!-- Dashboard Preview -->
+        <div class="dashboard-card">
+
+            <div class="dashboard-title">
+                Expense Overview
+            </div>
+
+            <div class="summary">
+
+                <div class="summary-card">
+                    <small>Total Expense</small>
+                    <strong>₹24,580</strong>
+                </div>
+
+                <div class="summary-card">
+                    <small>Transactions</small>
+                    <strong>42</strong>
+                </div>
+
+            </div>
+
+            <div class="expense-row">
+                <span class="expense-name">Food</span>
+                <span class="expense-amount">₹850</span>
+            </div>
+
+            <div class="expense-row">
+                <span class="expense-name">Transport</span>
+                <span class="expense-amount">₹420</span>
+            </div>
+
+            <div class="expense-row">
+                <span class="expense-name">Shopping</span>
+                <span class="expense-amount">₹1,250</span>
+            </div>
+
+            <div class="expense-row">
+                <span class="expense-name">Bills</span>
+                <span class="expense-amount">₹2,100</span>
+            </div>
+
+        </div>
+
+    </section>
+
+</body>
+</html>
