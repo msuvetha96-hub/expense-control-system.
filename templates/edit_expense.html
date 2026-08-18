@@ -1,1 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Expense - Expense Control System</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #0B1F3A;
+        }
+
+        .header {
+            background: #0B1F3A;
+            color: white;
+            padding: 20px 5%;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 700px;
+            margin: 50px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ccd5e0;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #0B1F3A;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background: #164B7A;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #164B7A;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        ₹ Expense Control System
+    </div>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>Edit Expense</h1>
+
+            <form method="POST">
+
+                <label>Expense Title</label>
+
+                <input
+                    type="text"
+                    name="title"
+                    value="{{ expense[1] }}"
+                    required
+                >
+
+                <label>Category</label>
+
+                <select name="category" required>
+
+                    <option value="Food"
+                        {% if expense[2] == "Food" %}selected{% endif %}>
+                        Food
+                    </option>
+
+                    <option value="Transport"
+                        {% if expense[2] == "Transport" %}selected{% endif %}>
+                        Transport
+                    </option>
+
+                    <option value="Shopping"
+                        {% if expense[2] == "Shopping" %}selected{% endif %}>
+                        Shopping
+                    </option>
+
+                    <option value="Bills"
+                        {% if expense[2] == "Bills" %}selected{% endif %}>
+                        Bills
+                    </option>
+
+                    <option value="Entertainment"
+                        {% if expense[2] == "Entertainment" %}selected{% endif %}>
+                        Entertainment
+                    </option>
+
+                    <option value="Other"
+                        {% if expense[2] == "Other" %}selected{% endif %}>
+                        Other
+                    </option>
+
+                </select>
+
+                <label>Amount</label>
+
+                <input
+                    type="number"
+                    name="amount"
+                    value="{{ expense[3] }}"
+                    step="0.01"
+                    min="0"
+                    required
+                >
+
+                <label>Date</label>
+
+                <input
+                    type="date"
+                    name="expense_date"
+                    value="{{ expense[4] }}"
+                    required
+                >
+
+                <label>Description</label>
+
+                <textarea
+                    name="description"
+                >{{ expense[5] or "" }}</textarea>
+
+                <button type="submit" class="button">
+                    Update Expense
+                </button>
+
+            </form>
+
+            <a href="/view-expenses" class="back">
+                ← Back to Expenses
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
